@@ -1,5 +1,5 @@
 import praw
-from memeModule import get_best_meme
+from memeModule import download_best_meme
 from submitModule import build_template
 
 
@@ -15,10 +15,10 @@ def main():
 
     subreddit = reddit.subreddit("ProgrammerHumor")
 
-    src = get_best_meme(subreddit)
+    caption = download_best_meme(subreddit)
 
     articles = []
-    meme = ["memes/meme_0.jpg", "caption"]
+    meme = ["current_meme.png", caption]
 
     template = build_template(articles, meme)
 
