@@ -1,7 +1,8 @@
-from bs4 import BeautifulSoup
-import requests
-import praw
 import re
+import praw
+import requests
+from bs4 import BeautifulSoup
+from praw.models import InlineImage
 
 meme_dict = {}
 
