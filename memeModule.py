@@ -6,13 +6,21 @@ from bs4 import BeautifulSoup
 meme_dict = {}
 
 
-def get_best_meme(subreddit):
+def download_best_meme(subreddit):
+    """Returns the link for the most upvoted meme in the subreddit"""
 
     add_memes_to_dict(subreddit)
 
-    post_title, post_link = best_meme_in_dict(meme_dict)
+    post_title, post_link = get_best_meme_in_dict(meme_dict)
 
-    return get_meme_src(subreddit, post_title, post_link)
+    url = get_meme_src(subreddit, post_title, post_link)
+
+    response = requests.get(url)
+    file = open("current_meme.png", "wb")
+    file.write(response.content)
+    file.close()
+
+    return post_title
 
 
 def add_memes_to_dict(subreddit):
@@ -29,7 +37,7 @@ def add_memes_to_dict(subreddit):
         meme_count += 1
 
 
-def best_meme_in_dict(meme_dict):
+def get_best_meme_in_dict(meme_dict):
     """Returns the title, link of the most upvoted post from the meme_dict"""
     key_most_upvoted = max(meme_dict, key=meme_dict.get)
     post_title = str(meme_dict[key_most_upvoted][1])[2:-1]
