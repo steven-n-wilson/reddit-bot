@@ -18,7 +18,7 @@ def get_nytimes_article():
     article_title = article_info[44].find('h2').get_text()
     article_description = article_info[44].find('p').get_text()
 
-    return [article_url, article_title, article_description]
+    return [article_title, article_url, article_description]
 
 
 # get_nytimes_article()
