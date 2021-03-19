@@ -1,6 +1,7 @@
 import praw
 from memeModule import download_best_meme
 from submitModule import build_template
+from articlesModule import get_nytimes_article
 
 
 def main():
@@ -17,7 +18,7 @@ def main():
 
     caption = download_best_meme(subreddit)
 
-    articles = []
+    articles = get_nytimes_article()
     meme = ["current_meme.png", caption]
 
     template = build_template(articles, meme)
