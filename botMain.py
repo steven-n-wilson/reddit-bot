@@ -23,12 +23,8 @@ def main():
 
     template = build_template(articles, meme)
 
-    title = template[0]
-    selftext = template[1]
-    media = template[2]
-
     reddit.subreddit("YourDailyTechNews9932").submit(
-        title, selftext=selftext, inline_media=media)
+        title=template[0], selftext=template[1], inline_media=template[2])
 
 
 if __name__ == "__main__":
