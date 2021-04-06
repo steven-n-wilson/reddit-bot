@@ -6,13 +6,13 @@ def build_template(articles, meme):
     image = InlineImage(path=meme[0], caption=meme[1])
     media = {"image1": image}
 
-    title = "📍 Markdown template"
+    title = "📍 Today's articles are here"
 
-    article1 = f"\n * [{articles[0]}]({articles[1]}) {articles[2]}"
-    article2 = "\n * [Second news article](https://markdownlivepreview.com/) Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae scelerisque ipsum. Duis imperdiet arcu nulla, quis rhoncus risus porttitor nec. Etiam sit amet posuere diam."
-    article3 = "\n * [Third news article](https://markdownlivepreview.com/) Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae scelerisque ipsum. Duis imperdiet arcu nulla, quis rhoncus risus porttitor nec. Etiam sit amet posuere diam."
+    article1 = f"\n * [{articles[0][0]}]({articles[0][1]}) {articles[0][2]}"
+    article2 = f"\n * [{articles[1][0]}]({articles[1][1]}) {articles[1][2]}"
+    article3 = f"\n * [{articles[2][0]}]({articles[2][1]}) {articles[2][2]}"
 
-    selftext = "Hello 👋 Today's botly news articles are:" + \
+    selftext = "Hello 👋 today's botly news articles:" + \
         article1 + article2 + article3 + "{image1}"
 
     return [title, selftext, media]
