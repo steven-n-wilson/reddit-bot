@@ -1,5 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
+from smmryPackage import smmry
 
 headers = {
     'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_2) AppleWebKit/601.3.9 (KHTML, like Gecko) Version/9.0.2 Safari/601.3.9'}
@@ -17,7 +18,9 @@ def get_nytimes_article():
     article_info = soup.select("div a", attrs={"class": "css-1l4spti"})
     article_url = "https://www.nytimes.com" + article_info[44].get('href')
     article_title = article_info[44].find('h2').get_text()
-    article_description = article_info[44].find('p').get_text()
+
+    text = smmry.get_text(article_url)
+    article_description = smmry.summarize(text)['sm_api_content']
 
     return [article_title, article_url, article_description]
 
@@ -36,8 +39,9 @@ def get_wired_article():
 
     article_url = "https://www.wired.com" + article_info[8].get('href')
     article_title = article_info[8].find('h5').get_text()
-    article_description = ""
 
+    text = smmry.get_text(article_url)
+    article_description = smmry.summarize(text)['sm_api_content']
     return [article_title, article_url, article_description]
 
 
@@ -55,6 +59,7 @@ def get_mit_article():
 
     article_url = article_info.get('href')
     article_title = article_info.get_text()
-    article_description = ""
+    text = smmry.get_text(article_url)
+    article_description = smmry.summarize(text)['sm_api_content']
 
     return [article_title, article_url, article_description]
