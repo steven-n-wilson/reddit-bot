@@ -1,7 +1,9 @@
 import praw
-from memeModule import download_best_meme
-from submitModule import build_template
-from articlesModule import get_mit_article, get_nytimes_article, get_wired_article
+from redditPackage import articlesModule, memeModule, submitModule
+
+# from memeModule import download_best_meme
+# from submitModule import build_template
+# from articlesModule import get_mit_article, get_nytimes_article, get_wired_article
 
 
 def main():
@@ -16,12 +18,13 @@ def main():
 
     subreddit = reddit.subreddit("ProgrammerHumor")
 
-    caption = download_best_meme(subreddit)
+    caption = memeModule.download_best_meme(subreddit)
 
-    articles = [get_nytimes_article(), get_wired_article(), get_mit_article()]
+    articles = [articlesModule.get_nytimes_article(
+    ), articlesModule.get_wired_article(), articlesModule.get_mit_article()]
     meme = ["current_meme.png", caption]
 
-    template = build_template(articles, meme)
+    template = submitModule.build_template(articles, meme)
 
     reddit.subreddit("YourDailyTechNews9932").submit(
         title=template[0], selftext=template[1], inline_media=template[2])
